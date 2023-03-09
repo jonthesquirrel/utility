@@ -15,11 +15,16 @@ const file2Contents = fs.readFileSync(file2Path, 'utf8');
 const file1Lines = file1Contents.split(/\r?\n/).map(line => line.replace('\r', ''));
 const file2Lines = file2Contents.split(/\r?\n/).map(line => line.replace('\r', ''));
 
+// Get the maximum line number length
+const maxLineNumberLength = Math.max(file1Lines.length.toString().length, file2Lines.length.toString().length);
+
 // Loop through each line in file1 and check if it's also in file2
-for (let i = 0; i < file1Lines.length; i++) {
-  const file1Line = file1Lines[i];
-  const file2Line = file2Lines[i];
+for (let lineNumber = 0; lineNumber < file1Lines.length; lineNumber++) {
+  const file1Line = file1Lines[lineNumber];
+  const file2Line = file2Lines[lineNumber];
+  const paddedLineNumber = (lineNumber + 1).toString().padStart(maxLineNumberLength, ' ');
+  const paddedFile1Line = file1Line.padEnd(file1Line.length + (maxLineNumberLength - paddedLineNumber.length), '\t');
   if (file1Line !== file2Line) {
-    console.log(`${i} | ${file1Line} | ${file2Line}`);
+    console.log(`${paddedLineNumber}\t|\t${paddedFile1Line}\t|\t${file2Line}`);
   }
 }
