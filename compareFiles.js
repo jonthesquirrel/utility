@@ -1,3 +1,7 @@
+// you must provide two .txt files as arguments
+
+// script will log the outputs to console
+
 const fs = require('fs');
 
 // Get the file paths from command-line arguments

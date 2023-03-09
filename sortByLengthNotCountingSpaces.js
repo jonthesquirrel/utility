@@ -1,5 +1,7 @@
-// you must create an input.txt file with each piece of text you want sorted on a new line.
-// script will create an output.txt file.
+// you must create an input.txt file
+// with each piece of text you want sorted on a new line
+
+// script will create an output.txt
 
 const fs = require('fs');
 
