@@ -1,7 +1,5 @@
-// you must create an input.txt file
-// with each piece of text you want sorted on a new line
-
-// script will create an output.txt
+// you must create an input.txt file with each piece of text you want sorted on a new line.
+// script will create an output.txt file.
 
 const fs = require('fs');
 
@@ -18,16 +16,22 @@ fs.readFile(inputFile, 'utf-8', (error, data) => {
     // Split the input text into an array of words
     const words = data.trim().split('\n');
 
-    // Remove spaces and other whitespace characters from the words
-    const cleanedWords = words.map(word => word.replace(/\s/g, ''));
+    // Create a new array of objects, where each object contains the original word (with spaces)
+    // and the cleaned word (without spaces)
+    const cleanedWords = words.map(word => {
+        return {
+            original: word,
+            cleaned: word.replace(/\s/g, '')
+        };
+    });
 
     // Sort the cleaned words by the number of letters
     cleanedWords.sort((a, b) => {
-        return a.length - b.length;
+        return a.cleaned.length - b.cleaned.length;
     });
 
-    // Join the sorted words into a single string
-    const outputText = cleanedWords.join('\n');
+    // Join the sorted words into a single string, using the original words (with spaces)
+    const outputText = cleanedWords.map(word => word.original).join('\n');
 
     // Write the sorted words to the output file
     fs.writeFile(outputFile, outputText, (error) => {
