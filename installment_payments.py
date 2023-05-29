@@ -4,7 +4,7 @@ import argparse
 
 def create_csv(start_date: str, start_amount: int, increment_amount: int, end_amount: int):
     # Convert start date string to datetime object
-    start_date = datetime.strptime(start_date, "%B %d, %Y")
+    start_date = datetime.strptime(start_date, "%b %d %Y")
 
     # Initialize increment values
     date_increment = timedelta(weeks=1)
@@ -23,7 +23,7 @@ def create_csv(start_date: str, start_amount: int, increment_amount: int, end_am
         # While amount is less than or equal to end_amount
         while start_amount <= end_amount:
             # Write the row with current date, amount, and reverse amount
-            writer.writerow([start_date.strftime("%B %d, %Y"), f'${start_amount:.2f}', f'${largest_amount:.2f}'])
+            writer.writerow([start_date.strftime("%b %d %Y"), f'${start_amount:.2f}', f'${largest_amount:.2f}'])
 
             # Increment date and amount, decrement largest_amount
             start_date += date_increment
@@ -32,7 +32,7 @@ def create_csv(start_date: str, start_amount: int, increment_amount: int, end_am
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a CSV file with dates and amounts.")
-    parser.add_argument('start_date', type=str, help="Starting date in 'Month Day, Year' format.")
+    parser.add_argument('start_date', type=str, help="Starting date in 'Month Day Year' format.")
     parser.add_argument('start_amount', type=int, help="Starting amount in dollars.")
     parser.add_argument('increment_amount', type=int, help="Increment amount in dollars.")
     parser.add_argument('end_amount', type=int, help="Ending amount in dollars.")
