@@ -14,6 +14,10 @@ def create_csv(start_date: str, start_amount: int, increment_amount: int, end_am
         # Header
         writer.writerow(["Date", "Total Paid", "Payment", "Debt Balance"])
 
+        # First row with initial amounts
+        debt_balance = end_amount - start_amount
+        writer.writerow(["", f'${start_amount:.2f}', "", f'${debt_balance:.2f}'])
+
         # Rows
         while start_amount < end_amount:
 
@@ -23,7 +27,7 @@ def create_csv(start_date: str, start_amount: int, increment_amount: int, end_am
 
             start_amount += increment_amount
             debt_balance = end_amount - start_amount
-            
+
             writer.writerow([start_date.strftime("%b %d %Y"), f'${start_amount:.2f}', f'${increment_amount:.2f}', f'${debt_balance:.2f}'])
 
             start_date += date_increment
