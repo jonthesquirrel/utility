@@ -32,7 +32,7 @@ def create_csv(start_date: str, start_amount: int, increment_amount: int, end_am
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a CSV file with dates and amounts.")
-    parser.add_argument('start_date', type=str, help="Starting date in 'Month Day Year' format.")
+    parser.add_argument('start_date', type=str, help="Starting date in 'Jun 1 2023' format.")
     parser.add_argument('start_amount', type=int, help="Starting amount in dollars.")
     parser.add_argument('increment_amount', type=int, help="Increment amount in dollars.")
     parser.add_argument('end_amount', type=int, help="Ending amount in dollars.")
