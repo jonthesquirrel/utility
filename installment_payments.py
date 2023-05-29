@@ -21,11 +21,12 @@ def create_csv(start_date: str, start_amount: int, increment_amount: int, end_am
             if start_amount + increment_amount > end_amount:
                 increment_amount = end_amount - start_amount
 
+            start_amount += increment_amount
             debt_balance = end_amount - start_amount
+            
             writer.writerow([start_date.strftime("%b %d %Y"), f'${start_amount:.2f}', f'${increment_amount:.2f}', f'${debt_balance:.2f}'])
 
             start_date += date_increment
-            start_amount += increment_amount
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create a CSV file with dates and amounts.")
